@@ -1,5 +1,15 @@
 export const words = [
     "Chat",
     "Tweet",
-    "aleksa-sukovic"
+    "website",
+    "aleksa-sukovic",
+    "AleksaC",
+    "dick",
+    "fuck you",
+    "fuck",
+    "fu",
+    "Milo",
+    "Djukanovic",
+    "Milo Djukanovic",
+    "Knezevic"
 ];

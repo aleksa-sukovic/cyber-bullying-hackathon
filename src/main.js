@@ -1,5 +1,4 @@
 import PageTransformer from "./Transformers/Page/PageTransformer.js";
-import NodeCrawler from "./Transformers/Page/Crawlers/NodeCrawler.js";
 import MyMutationObserver from "./Observers/MyMutationObserver.js";
 
 const pageTransformer = new PageTransformer();
@@ -8,9 +7,17 @@ const partial = (func, ...args) => (...rest) => func(...args, ...rest);
 
 function subscriber_wrapper(transofrmer, mutations) {
     mutations.forEach(mutation => {
-        mutation.addedNodes.forEach(node => {
-            transofrmer.transform(node);
+        let shouldTransform = true;
+
+        mutation.removedNodes.forEach(node => {
+            shouldTransform = shouldTransform &&  ! node.textContent.match(/\*\*\*+/);
         });
+
+        if (shouldTransform) {
+            mutation.addedNodes.forEach(node => {
+                transofrmer.transform(node);
+            });
+        }
     });
 }
 

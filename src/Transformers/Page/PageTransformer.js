@@ -1,6 +1,6 @@
 import NodeCrawler from "./Crawlers/NodeCrawler.js";
 import NodeValidator from "./Validators/NodeValidator.js";
-import NodeFactory from "./Factories/NodeFactory.js";
+import Node from "./Models/Node.js";
 
 export default class PageTransformer
 {
@@ -12,17 +12,21 @@ export default class PageTransformer
     transform(pageRoot)
     {
         let availableNodes = this.nodeCrawler.parseNodes(pageRoot);
+
         for (let node of availableNodes) {
-            let transformedNode = this.transformNode(node);
-            //transformedNode.apply();
+            this.transformNode(node);
+
+            if (node) {
+            }
         }
     }
 
     transformNode(node)
     {
-        NodeValidator.validate(node).then(valid => {
-            // return valid ? new ValidNode(node) : new InvalidNode(node);
-            //console.log(valid);
+        NodeValidator.validate(node).then(response => {
+            if ( ! response.valid) {
+                new Node(node, response);
+            }
         });
     }
 }
