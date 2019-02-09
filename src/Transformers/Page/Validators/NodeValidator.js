@@ -1,19 +1,28 @@
+import { words } from "./WordContainer.js"
+
 export default class NodeValidator
 {
     static validate(node)
     {
-        return fetch('/app/validator.php?word=' + node.textContent)
-            .then(response => {
-                if (response.status !== 200) {
-                    console.log('Error while fetching words!');
-
-                    return;
-                }
-
-                return response.json();
-            })
-            .then(jsonResponse => {
-                return jsonResponse.valid;
-            });
+        const valid = {
+            original: node.innerHTML
+        };
+        let censored = valid.original;
+        const asterisk = "*"
+        words.forEach(word => {
+            censored = censored.replace(word, asterisk.repeat(word.length));
+            //node.innerHTML = node.innerHTML.replace(word, asterisk.repeat(word.length));
+        });
+        valid.changed = censored;
+        valid.valid = valid.changed === valid.original;
+        if (!valid.valid) {
+            node.innerHTML = valid.changed;
+        }
+        console.log(valid);
+        return new Promise((resolve) => {
+            resolve(
+                valid
+            );
+        });
     }
 }

@@ -1,11 +1,22 @@
 import PageTransformer from "./Transformers/Page/PageTransformer.js";
+import NodeCrawler from "./Transformers/Page/Crawlers/NodeCrawler.js";
+import MyMutationObserver from "./Observers/MyMutationObserver.js";
 
 const pageTransformer = new PageTransformer();
 
-// new MyMutationObserver(document.getElementsByTagName("body")[0], mutations => {
-//     console.log(mutations);
-//
-//     pageTransformer.transform(document.getElementsByTagName("body")[0]);
-// });
+const partial = (func, ...args) => (...rest) => func(...args, ...rest);
 
-pageTransformer.transform(document.getElementsByTagName("body")[0]);
+function subscriber_wrapper(transofrmer, mutations) {
+    mutations.forEach(mutation => {
+        mutation.addedNodes.forEach(node => {
+            transofrmer.transform(node);
+        });
+    });
+}
+
+const subscriber = partial(subscriber_wrapper, pageTransformer);
+const root = document.getElementsByTagName("body")[0];
+pageTransformer.transform(root);
+
+let observer = new MyMutationObserver(root, subscriber);
+observer.observe();

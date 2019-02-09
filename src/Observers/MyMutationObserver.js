@@ -5,13 +5,9 @@ export default class MyMutationObserver
         this.onMutationCallback = onMutationCallback;
         this.mutationObserver = new MutationObserver(this.onMutationCallback);
         this.root = root;
-
-        this.observe();
     }
 
-
-    observe()
-    {
+    observe() {
         this.mutationObserver.observe(this.root, {
             attributes: false,
             subtree: true,

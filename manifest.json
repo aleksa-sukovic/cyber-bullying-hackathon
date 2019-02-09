@@ -22,6 +22,7 @@
         "src/Transformers/Page/Filters/NodeFilter.js",
         "src/Transformers/Page/Models/Node.js",
         "src/Transformers/Page/Validators/NodeValidator.js",
+        "src/Transformers/Page/Validators/WordContainer.js",
         "src/Transformers/Page/Factories/NodeFactory.js",
         "src/Transformers/Page/Models/HudWindow.js",
         "src/main.js"

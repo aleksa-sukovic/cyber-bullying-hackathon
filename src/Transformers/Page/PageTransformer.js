@@ -12,18 +12,17 @@ export default class PageTransformer
     transform(pageRoot)
     {
         let availableNodes = this.nodeCrawler.parseNodes(pageRoot);
-
         for (let node of availableNodes) {
-            this.transformNode(node).then(result => {
-                //
-            });
+            let transformedNode = this.transformNode(node);
+            //transformedNode.apply();
         }
     }
 
     transformNode(node)
     {
-        return NodeValidator.validate(node).then(response => {
-            return NodeFactory.create(node, response);
+        NodeValidator.validate(node).then(valid => {
+            // return valid ? new ValidNode(node) : new InvalidNode(node);
+            //console.log(valid);
         });
     }
 }
