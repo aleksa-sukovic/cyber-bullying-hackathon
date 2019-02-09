@@ -1,0 +1,18 @@
+{
+    "name" : "Hackathon Chrome Extension",
+    "version": "1.0",
+    "manifest_version" : 2,
+    "description": "Auto-hide and filter offensive words from web",
+    "browser_action": {
+        "default_title": "Offensive Blocker",
+        "default_popup": "src/popup.html"
+    },
+    "permissions": ["activeTab"],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js" : ["src/bootstrap.js"],
+            "run_at": "document_idle"
+        }
+    ]
+}
