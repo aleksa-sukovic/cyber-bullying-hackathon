@@ -12,7 +12,6 @@ export default class PageTransformer
     transform(pageRoot)
     {
         let availableNodes = this.nodeCrawler.parseNodes(pageRoot);
-
         for (let node of availableNodes) {
             this.transformNode(node);
 
