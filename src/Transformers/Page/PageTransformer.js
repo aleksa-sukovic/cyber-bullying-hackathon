@@ -8,7 +8,6 @@ export default class PageTransformer
     constructor()
     {
         this.nodeCrawler = new NodeCrawler();
-        this.nodeValidator = new NodeValidator();
     }
 
     transform(pageRoot)
@@ -24,7 +23,7 @@ export default class PageTransformer
 
     transformNode(node)
     {
-        this.nodeValidator.validate(node).then(valid => {
+        NodeValidator.validate(node).then(valid => {
             return valid ? new ValidNode(node) : new InvalidNode(node);
         });
     }
