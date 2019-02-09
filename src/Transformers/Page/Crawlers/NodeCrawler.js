@@ -9,6 +9,8 @@ export default class NodeCrawler
 
     parseNodes(root)
     {
-        // parse and filter nodes
+        // foreach nod
+        // if nodeFilter.isValidNode
+        // add it to result
     }
 }
