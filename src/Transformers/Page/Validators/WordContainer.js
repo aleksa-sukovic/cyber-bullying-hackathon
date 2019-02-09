@@ -11,5 +11,10 @@ export const words = [
     "Milo",
     "Djukanovic",
     "Milo Djukanovic",
-    "Knezevic"
+    "Knezevic",
+    "Aleksa",
+    "Maja",
+    "Kalezic",
+    "Maja Kalezic",
+    "Vazda."
 ];
