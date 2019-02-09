@@ -14,5 +14,16 @@
             "js" : ["src/bootstrap.js"],
             "run_at": "document_idle"
         }
+    ],
+    "web_accessible_resources" : [
+        "src/Observers/MyMutationObserver.js",
+        "src/Transformers/Page/PageTransformer.js",
+        "src/Transformers/Page/Crawlers/NodeCrawler.js",
+        "src/Transformers/Page/Filters/NodeFilter.js",
+        "src/Transformers/Page/Models/Node.js",
+        "src/Transformers/Page/Models/InvalidNode.js",
+        "src/Transformers/Page/Models/ValidNode.js",
+        "src/Transformers/Page/Validators/NodeValidator.js",
+        "src/main.js"
     ]
 }
