@@ -7,10 +7,20 @@ export default class NodeCrawler
         this.nodeFilter = new NodeFilter();
     }
 
+    parseNode(node, nodes){
+        if (node.nodeType == Node.TEXT_NODE && NodeFilter.isValidNode(node)){
+            nodes.push(node);
+        }
+        
+        node.childNodes.forEach(element => {
+            this.parseNode(element, nodes);
+        });
+    }
+
     parseNodes(root)
     {
-        // foreach nod
-        // if nodeFilter.isValidNode
-        // add it to result
+        let nodes = new Array();
+        this.parseNode(root, nodes);
+        return nodes;
     }
 }

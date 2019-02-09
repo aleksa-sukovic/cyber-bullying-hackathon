@@ -1,7 +1,11 @@
 export default class NodeFilter
 {
-    isValidNode(node)
+    static isValidNode(node)
     {
-
+        if (node.textContent.trim().length < 2){
+            return false;
+        }
+        
+        return true;
     }
 }
